@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, My Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#cfe8fb;--pink:#fbd3e1;--ink:#4a3a55;--soft:#7b6a86;--rose:#e8648f;--sky:#5fa8e0;--card:#ffffffcc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--blue:#cfe8fb;--pink:#fbd3e1;--ink:#4a3a55}}
+:root[data-theme="dark"]{--blue:#cfe8fb;--pink:#fbd3e1;--ink:#4a3a55}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--pink);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:18px;line-height:1.6}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:500;line-height:1.1}
+h1{font-size:clamp(2.6rem,10vw,6rem)}
+h2{font-size:clamp(1.9rem,6vw,3.2rem);margin-bottom:1rem}
+.deck{position:fixed;inset:0;overflow:hidden}
+.page{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem 5rem;transition:transform .9s cubic-bezier(.7,0,.2,1);overflow:hidden}
+.b{background:var(--blue)}.p{background:var(--pink)}
+.page>*{position:relative;z-index:2;max-width:640px}
+.page .a{opacity:0;transform:translateY(24px) scale(.96);transition:all .8s ease}
+.page.on .a{opacity:1;transform:none}
+.page.on .a:nth-child(2){transition-delay:.35s}.page.on .a:nth-child(3){transition-delay:.6s}.page.on .a:nth-child(4){transition-delay:.85s}
+p{color:var(--soft)}
+.btn{font:inherit;font-weight:600;border:0;border-radius:99px;padding:.8rem 1.8rem;background:var(--rose);color:#fff;cursor:pointer;transition:transform .2s;box-shadow:0 8px 20px #e8648f55}
+.btn:hover{transform:scale(1.06)}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+/* floating hearts */
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:1}
+#hearts i{position:absolute;bottom:-40px;font-style:normal;animation:rise linear forwards;opacity:.7}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+/* cover balloons */
+.balloons{position:absolute!important;inset:0;max-width:none!important;z-index:1!important;pointer-events:none}
+.balloons b{position:absolute;bottom:-160px;width:60px;height:76px;border-radius:50% 50% 48% 48%;animation:float 9s ease-in infinite;opacity:.85}
+.balloons b:after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:70px;background:#fff9}
+@keyframes float{to{transform:translateY(-130vh) translateX(30px)}}
+.title-big{animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.04)}}
+/* typewriter */
+#tw{font-family:Fraunces,serif;font-size:clamp(1.4rem,4.5vw,2.2rem);color:var(--ink);min-height:8rem;line-height:1.35}
+#tw:after{content:"|";animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+/* cake */
+.cake{width:220px;margin:0 auto 1rem}
+#flame{transform-origin:50% 100%;animation:flick .4s ease-in-out infinite alternate;transition:opacity .4s}
+@keyframes flick{to{transform:scale(1.15,.9) rotate(4deg)}}
+.out #flame{opacity:0;animation:none}
+#cakemsg{opacity:0;transition:opacity 1s;margin-top:1rem;font-family:Fraunces,serif;font-size:1.5rem;color:var(--rose)}
+.out #cakemsg{opacity:1}
+/* timeline */
+.tl{display:grid;gap:1rem;text-align:left;width:min(560px,100%)}
+.tl div{background:var(--card);border-radius:18px;padding:.9rem 1.2rem;border-left:6px solid var(--rose)}
+.tl b{font-family:Fraunces,serif;font-size:1.2rem;color:var(--ink)}
+.tl span{display:block;font-size:.95rem;color:var(--soft);line-height:1.45}
+/* flip cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;width:min(600px,100%)}
+.fc{perspective:700px;height:110px;cursor:pointer;background:none;border:0;font:inherit}
+.fc div{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.fc.f div{transform:rotateY(180deg)}
+.fc span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:16px;backface-visibility:hidden;padding:.5rem;font-size:.9rem;line-height:1.3}
+.fc .fr{background:#fff;font-size:2rem;color:var(--rose);box-shadow:0 6px 16px #0001}
+.fc .bk{background:var(--rose);color:#fff;transform:rotateY(180deg);font-weight:600}
+/* polaroids */
+.pol{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;max-width:680px!important}
+.pol figure{background:#fff;padding:.6rem .6rem 1.8rem;box-shadow:0 10px 24px #0002;width:140px;transition:transform .4s;font-family:Fraunces,serif;font-size:.9rem;color:var(--soft)}
+.pol figure:nth-child(odd){transform:rotate(-5deg)}.pol figure:nth-child(even){transform:rotate(4deg)}
+.pol figure:hover{transform:rotate(0) scale(1.1)}
+.pol i{display:block;height:120px;margin-bottom:.4rem;font-size:2.4rem;line-height:120px;font-style:normal}
+/* wishes */
+.wb{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem}
+.wb button{width:64px;height:80px;border:0;border-radius:50% 50% 48% 48%;cursor:pointer;font-size:1.5rem;animation:bob 3s ease-in-out infinite;transition:transform .2s,opacity .3s}
+.wb button:nth-child(2n){animation-delay:-1s}.wb button:nth-child(3n){animation-delay:-2s}
+.wb button.pop{transform:scale(1.6);opacity:0;pointer-events:none}
+@keyframes bob{50%{transform:translateY(-12px)}}
+#wish{min-height:5rem;font-family:Fraunces,serif;font-size:1.5rem;color:var(--ink)}
+/* letter */
+.env{position:relative;width:260px;height:170px;margin:0 auto;cursor:pointer;background:#f7a8c4;border-radius:6px;box-shadow:0 12px 28px #0002}
+.env .flap{position:absolute;inset:0 0 auto 0;height:100px;background:#f48fb1;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s;z-index:3}
+.env .lt{position:absolute;left:10px;right:10px;bottom:10px;height:140px;background:#fff;border-radius:4px;transition:transform .9s .4s,height .9s .4s;z-index:2;overflow:hidden;font-size:.8rem;padding:.8rem;color:var(--soft)}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .lt{transform:translateY(-190px);height:300px}
+.env.open{margin-top:230px}
+.env{transition:margin .8s}
+.env .lt p{font-size:.78rem;line-height:1.4;text-align:left;color:var(--ink)}
+.hint{font-size:.9rem;margin-top:1rem}
+/* finale */
+.heart{font-size:5rem;animation:beat 1.1s infinite;display:block;color:var(--rose)}
+@keyframes beat{15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+/* nav */
+#nav{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;justify-content:center;align-items:center;gap:.8rem;z-index:20}
+#nav button.ar{width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--rose);font-size:1.3rem;cursor:pointer;box-shadow:0 4px 12px #0002}
+#dots{display:flex;gap:7px}
+#dots i{width:9px;height:9px;border-radius:50%;background:#fff;opacity:.6;transition:all .3s}
+#dots i.on{background:var(--rose);opacity:1;transform:scale(1.4)}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:30}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+@media(max-width:480px){.grid{grid-template-columns:repeat(2,1fr)}.pol figure{width:120px}.pol i{height:96px;line-height:96px}}
+</style>
+</head>
+<body>
+<div id="hearts"></div>
+<canvas id="cv"></canvas>
+<main class="deck" id="deck">
+
+<!-- 1 cover -->
+<section class="page p">
+  <div class="balloons" id="bl"></div>
+  <p class="a">Today is all about you</p>
+  <h1 class="a title-big">Happy Birthday,<br><span class="nm">My Love</span></h1>
+  <p class="a">Swipe, scroll or tap the arrow to open your surprise ♡</p>
+</section>
+
+<!-- 2 typewriter -->
+<section class="page b">
+  <h2 class="a">Before anything else…</h2>
+  <div id="tw" class="a"></div>
+</section>
+
+<!-- 3 cake -->
+<section class="page p">
+  <h2 class="a">Make a wish</h2>
+  <div class="a" id="cakebox">
+    <svg class="cake" viewBox="0 0 220 200" aria-label="Birthday cake">
+      <g id="flame"><path d="M110 22c10 14 8 24 0 28-8-4-10-14 0-28z" fill="#ffb347"/><path d="M110 32c5 8 4 14 0 16-4-2-5-8 0-16z" fill="#fff3a0"/></g>
+      <rect x="107" y="48" width="6" height="34" fill="#fff" rx="3"/>
+      <rect x="40" y="82" width="140" height="50" rx="10" fill="#fff"/>
+      <path d="M40 98q17 14 35 0t35 0 35 0 35 0v-6a10 10 0 0 0-10-10H50a10 10 0 0 0-10 10z" fill="#f48fb1"/>
+      <rect x="20" y="132" width="180" height="56" rx="12" fill="#a7d3f5"/>
+      <path d="M20 148q22 14 45 0t45 0 45 0 45 0" fill="none" stroke="#fff" stroke-width="6"/>
+      <circle cx="60" cy="172" r="5" fill="#fff"/><circle cx="110" cy="172" r="5" fill="#fff"/><circle cx="160" cy="172" r="5" fill="#fff"/>
+    </svg>
+    <button class="btn" id="blow">Blow the candle</button>
+    <div id="cakemsg">May every wish you made come true ✨</div>
+  </div>
+</section>
+
+<!-- 4 story -->
+<section class="page b">
+  <h2 class="a">Our little story</h2>
+  <div class="tl a">
+    <div><b>The day we met</b><span>One hello that quietly changed everything.</span></div>
+    <div><b>Our first date</b><span>Nervous smiles, endless talking, no wish to leave.</span></div>
+    <div><b>The moment I knew</b><span>Somewhere between your laugh and your kindness.</span></div>
+    <div><b>Today</b><span>Still choosing you, happier than ever.</span></div>
+  </div>
+</section>
+
+<!-- 5 reasons -->
+<section class="page p">
+  <h2 class="a">Reasons I love you</h2>
+  <div class="grid a" id="rs"></div>
+  <p class="hint a">Tap each heart</p>
+</section>
+
+<!-- 6 memories -->
+<section class="page b">
+  <h2 class="a">Our memories</h2>
+  <div class="pol a">
+    <figure><i style="background:#fbd3e1">📸</i>First photo</figure>
+    <figure><i style="background:#e6f2fd">🌅</i>That sunset</figure>
+    <figure><i style="background:#fde6ee">🍦</i>Ice cream days</figure>
+    <figure><i style="background:#d9ecfb">✈️</i>Our trip</figure>
+  </div>
+  <p class="hint a">Every moment with you is my favourite.</p>
+</section>
+
+<!-- 7 wishes -->
+<section class="page p">
+  <h2 class="a">Pop a balloon</h2>
+  <div class="wb a" id="wb"></div>
+  <div id="wish" class="a">Pick a balloon for a birthday wish</div>
+</section>
+
+<!-- 8 letter -->
+<section class="page b">
+  <h2 class="a">A letter for you</h2>
+  <div class="a">
+    <div class="env" id="env" tabindex="0" role="button" aria-label="Open the letter">
+      <div class="lt"><p>Dear <span class="nm">My Love</span>,<br>Thank you for every laugh, every hug and every quiet moment. You make ordinary days feel like celebrations. I hope this year gives you all the joy you give me.<br>Forever yours ♡</p></div>
+      <div class="flap"></div>
+    </div>
+    <p class="hint">Tap the envelope</p>
+  </div>
+</section>
+
+<!-- 9 finale -->
+<section class="page p">
+  <span class="heart a">♥</span>
+  <h1 class="a">I love you,<br><span class="nm">My Love</span></h1>
+  <p class="a">Here's to another year of us. Happy Birthday!</p>
+  <button class="btn a" id="party">Celebrate 🎉</button>
+</section>
+
+</main>
+
+<div id="nav">
+  <button class="ar" id="prev" aria-label="Previous page">‹</button>
+  <div id="dots"></div>
+  <button class="ar" id="next" aria-label="Next page">›</button>
+</div>
+
+<script>
+const NAME="My Love"; // change to her name
+document.querySelectorAll('.nm').forEach(e=>e.textContent=NAME);
+const $=s=>document.querySelector(s), pages=[...document.querySelectorAll('.page')];
+const dots=$('#dots'); pages.forEach(()=>dots.append(document.createElement('i')));
+// balloons + hearts
+const cols=['#f48fb1','#8fc7f0','#fff','#f7b6cd','#b6dcf7'];
+for(let k=0;k<9;k++){const b=document.createElement('b');b.style.cssText=`left:${5+k*11}%;background:${cols[k%5]};animation-delay:${k*-1.1}s;animation-duration:${8+k%4*2}s`;$('#bl').append(b)}
+setInterval(()=>{const h=document.createElement('i');h.textContent=['♡','♥','✦'][Math.random()*3|0];h.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*22}px;color:${Math.random()>.5?'#f48fb1':'#8fc7f0'};animation-duration:${7+Math.random()*6}s`;$('#hearts').append(h);setTimeout(()=>h.remove(),13000)},700);
+// confetti
+const cv=$('#cv'),cx=cv.getContext('2d');let P=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener('resize',size);
+function burst(x=innerWidth/2,y=innerHeight/2,n=90){for(let k=0;k<n;k++)P.push({x,y,vx:(Math.random()-.5)*14,vy:Math.random()*-13-2,c:['#f48fb1','#8fc7f0','#fff','#ffd36e','#c9a7f5'][k%5],s:5+Math.random()*6,r:Math.random()*6,l:120})}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.2;p.l--;cx.save();cx.globalAlpha=Math.min(1,p.l/40);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()});requestAnimationFrame(loop)})();
+// typewriter
+let twT;const msg=`Some people make the world softer just by being in it. For me, that person is you, ${NAME}.`;
+function type(){clearTimeout(twT);const el=$('#tw');el.textContent='';let n=0;(function t(){if(n<=msg.length){el.textContent=msg.slice(0,n++);twT=setTimeout(t,45)}})()}
+// cake
+$('#blow').onclick=()=>{$('#cakebox').classList.add('out');burst(innerWidth/2,innerHeight/2,140)};
+// reasons
+['Your smile','Your laugh','Your kindness','How you care','Your hugs','Just being you'].forEach(t=>{const b=document.createElement('button');b.className='fc';b.innerHTML=`<div><span class="fr">♡</span><span class="bk">${t}</span></div>`;b.onclick=()=>b.classList.toggle('f');$('#rs').append(b)});
+// wishes
+const W=['May your day be full of joy','May all your dreams come true','Stay as beautiful as you are','Here\'s to endless laughter','You deserve the whole world','Forever by your side'];
+W.forEach((w,k)=>{const b=document.createElement('button');b.style.background=cols[k%2?1:0];b.textContent=k%2?'💙':'💗';b.setAttribute('aria-label','Balloon');b.onclick=e=>{b.classList.add('pop');$('#wish').textContent=w;burst(e.clientX,e.clientY,30)};$('#wb').append(b)});
+// letter
+const env=$('#env');env.onclick=()=>env.classList.toggle('open');env.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();env.click()}};
+$('#party').onclick=()=>{for(let k=0;k<5;k++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.6,80),k*250)};
+// navigation
+let cur=-1,lock=false;
+function go(n){if(n<0||n>=pages.length||n===cur||lock)return;lock=true;setTimeout(()=>lock=false,800);
+ pages.forEach((p,k)=>{p.style.transform=`translateX(${(k-n)*100}%)`;p.classList.toggle('on',k===n)});
+ [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===n));cur=n;
+ if(n===1)type();if(n===8)setTimeout(()=>$('#party').click(),900)}
+go(0);
+$('#next').onclick=()=>go(cur+1);$('#prev').onclick=()=>go(cur-1);
+[...dots.children].forEach((d,k)=>d.onclick=()=>go(k));
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(cur+1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(cur-1)});
+addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>30)go(cur+(e.deltaY>0?1:-1))},{passive:true});
+let sx=0;addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)go(cur+(d<0?1:-1))});
+</script>
+</body>
+</html>
